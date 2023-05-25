@@ -10,7 +10,7 @@ using System.Net;
 
 namespace App_BancoDigital.Service
 {
-    public abstract class DataService
+    public class DataService
     {
         private static readonly string servidor = "http://10.0.2.2:8000";
 
@@ -32,6 +32,10 @@ namespace App_BancoDigital.Service
                 {
                     HttpResponseMessage resposta = await client.GetAsync(uri);
 
+                    Console.WriteLine("_______________________________");
+                    Console.WriteLine(resposta.Content.ReadAsStringAsync().Result);
+                    Console.WriteLine("_______________________________");
+
                     if (resposta.IsSuccessStatusCode)
                     {
                         resposta_json = resposta.Content.ReadAsStringAsync().Result;
@@ -45,6 +49,36 @@ namespace App_BancoDigital.Service
           return resposta_json;
         }
 
+        protected static async Task<string> PostDataToService(string json_object, string rota)
+        {
+            string resposta_json;
+
+            string uri = servidor + rota;
+
+            if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+            {
+                throw new Exception("ERR_INTERNET_DISCONNECTED - Sem Internet");
+            }
+
+            using (HttpClient client = new HttpClient())
+            {
+                HttpResponseMessage resposta = await client.PostAsync(uri,new StringContent(json_object, Encoding.UTF8, "application/json"));
+
+                Console.WriteLine("_______________________________");
+                Console.WriteLine(resposta.Content.ReadAsStringAsync().Result);
+                Console.WriteLine("_______________________________");
+
+                if (resposta.IsSuccessStatusCode)
+                {
+                    resposta_json = resposta.Content.ReadAsStringAsync().Result;
+                }
+                else
+                    throw new Exception(DecodeServerError(resposta.StatusCode));
+            }
+
+            return resposta_json;
+        }
+
         private static string DecodeServerError(HttpStatusCode status_code) 
         {
 
@@ -52,37 +86,32 @@ namespace App_BancoDigital.Service
 
             switch (status_code)
             {
-                case HttpStatusCode.BadRequest:
+                case System.Net.HttpStatusCode.BadRequest:
                     mensagem_erro = "ERR_BAD_REQUEST - A requisição não atendida.";
                     break;
 
-                case HttpStatusCode.NotFound:
+                case System.Net.HttpStatusCode.NotFound:
                     mensagem_erro = "ERR_NOT_FOUND - Recurso não encontrado.";
                     break;
 
-                case HttpStatusCode.InternalServerError:
-                    mensagem_erro = "ERR_INTERNAL_SERVER - Banco de Dados Indisponível!";
+                case System.Net.HttpStatusCode.InternalServerError:
+                    mensagem_erro = "ERR_INTERNAL_SERVER - Banco de Dados Indisponível.";
                     break;
 
-                case HttpStatusCode.RequestTimeout:
+                case System.Net.HttpStatusCode.RequestTimeout:
                     mensagem_erro = "ERR_TIMED_OUT - O servidor demorou muito para responder.";
                     break;
 
-                case HttpStatusCode.Forbidden:
+                case System.Net.HttpStatusCode.Forbidden:
                     mensagem_erro = "ERR_FORBIDDEN - Recurso indisponível.";
                     break;
 
                 default:
-                    mensagem_erro = "ERR_UNKNOWN - Erro desconhecido. Tente novamente!";
+                    mensagem_erro = "ERR_SERVER - Erro no servidor. Tente novamente!";
                     break;
             }
-            return mensagem_erro;
-        }
-        protected static async Task<string> PostDataToService(string objeto_json, string rota)
-        {
-            string resposta_json;
 
-            string uri = servidor + rota;
+            return mensagem_erro;
         }
     }
 
