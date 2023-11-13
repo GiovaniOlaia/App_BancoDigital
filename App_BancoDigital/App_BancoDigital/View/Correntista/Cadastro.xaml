@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App_BancoDigital.View.Correntista.Cadastro">
+    <ContentPage.Content>
+
+        <Grid ColumnDefinitions="*" RowDefinitions="*,100" Padding="20">
+
+            <StackLayout Grid.Row="0">
+
+                <Label Text="Inscreva-se:" FontSize="40"
+                    Style="{ StaticResource Titulos_Cadastrados }"/>
+
+                <Line X1="0" X2="1000" Y1="0" Y2="0"
+                      Stroke="Black" Margin="0,0,0,20"/>
+
+                <ScrollView Orientation="Vertical">
+
+                   <StackLayout>
+
+                       <Label Text="Nome:" Style="{ StaticResource Titulos_Cadastrados }"/>
+                        <Entry x:Name="txt_nome_correntista" Placeholder="Crie um nome de usuário"
+                               MaxLength="50" Style="{ StaticResource Campos_Cadastrados }"/>
+
+                        <Label Text="CPF:" Style="{ StaticResource Titulos_Cadastrados }"/>
+                        <Entry x:Name="txt_cpf_correntista" Placeholder="Insira seu CPF"
+                               MaxLength="14" Style="{ StaticResource Campos_Cadastrados }"/>
+
+                        <Label Text="Data de Nascimento:" Style="{ StaticResource Titulos_Cadastrados }"/>
+                        <DatePicker x:Name="dtpck_data_nascimento_correntista" Format="dd/MM/yyyy"/>
+
+                        <Label Text="Senha:" Style="{ StaticResource Titulos_Cadastrados }"/>
+                        <Entry x:Name="txt_senha_correntista" Placeholder="Insira uma senha"
+                               MaxLength="20" Style="{ StaticResource Campos_Cadastrados }"/>
+
+                   </StackLayout>
+                
+                </ScrollView>
+
+            </StackLayout>
+
+            <StackLayout Grid.Row="1" VerticalOptions="Center">
+
+                <Button x:Name="btn_cadastrar_correntista" Text="Cadastrar"
+                        Clicked="btn_cadastrar_correntista_Clicked"
+                        Style="{ StaticResource Botoes_Cadastros }"/>
+
+            </StackLayout>
+
+        </Grid>
+        
+    </ContentPage.Content>
+    
+</ContentPage>

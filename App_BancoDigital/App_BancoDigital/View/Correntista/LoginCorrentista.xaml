@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App_BancoDigital.View.Correntista.LoginCorrentista">
+    <ContentPage.Resources>
+
+        <ResourceDictionary>
+
+            <Style x:Key="Titulos_Login_Correntista" TargetType="Label">
+
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="FontSize" Value="Large"/>
+
+            </Style>
+
+            <Style x:Key="Campos_Login_Correntista" TargetType="Entry">
+
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="ClearButtonVisibility" Value="WhileEditing"/>
+                <Setter Property="Keyboard" Value="Text"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="PlaceholderColor" Value="Gray"/>
+
+            </Style>
+
+            <Style x:Key="Botao_Cadastro_Correntista" TargetType="Button">
+
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="BorderWidth" Value="3"/>
+                <Setter Property="Margin" Value="0,20,0,0"/>
+
+            </Style>
+
+            <Style x:Key="Botao_Login" TargetType="Button">
+
+                <Setter Property="BackgroundColor" Value="Navy"/>
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="BorderColor" Value="0"/>
+                <Setter Property="Margin" Value="0,20,0,0"/>
+                
+            </Style>
+                
+        </ResourceDictionary>
+        
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+
+        <ScrollView Padding="20">
+
+            <Grid ColumnDefinitions="*,200,*" RowDefinitions="200,400" VerticalOptions="Center">
+
+                <Frame Grid.Column="1" Grid.Row="0" BackgroundColor="White"
+                       CornerRadius="100" BorderColor="Navy">
+
+                    <Image x:Name="img_logo" Aspect="Fill"/>
+                    
+                </Frame>
+
+                <StackLayout Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" VerticalOptions="Center">
+                    
+                    <Label Text="Usuário" Style="{ StaticResource Titulos_Login_Correntista }"/>
+                    <Entry x:Name="txt_usuario" Placeholder="Insira seu nome"
+                           Style="{ StaticResource Campos_Login_Correntista }"/>
+
+                    <Label Text="Senha:" Style="{ StaticResource Titulos_Login_Correntista }"/>
+                    <Entry x:Name="txt_senha" Placeholder="Insira sua senha aqui"
+                           IsPassword="True" Style="{ StaticResource Campos_Login_Correntista }"/>
+
+                    <Button x:Name="btn_senha" Text="Exibir"
+                            BackgroundColor="Transparent" TextColor="Black"
+                            HorizontalOptions="End" FontSize="12"
+                            Clicked="btn_senha_Clicked"/>
+                    
+                    
+
+                </StackLayout>
+                
+            </Grid>
+            
+        </ScrollView>
+        
+    </ContentPage.Content>
+    
+</ContentPage>

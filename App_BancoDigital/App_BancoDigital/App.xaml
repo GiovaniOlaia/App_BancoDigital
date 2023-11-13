@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App_BancoDigital.App">
+    <Application.Resources>
+
+        <Style x:Key="Titulos_Cadastrados" TargetType="Page">
+
+            <Setter Property="BackgroundColor" Value="White"/>
+
+        </Style>
+
+        <Style x:Key="Titulos_Cadstrados" TargetType="Label">
+
+            <Setter Property="TextColor" Value="Black"/>
+            <Setter Property="HorizontalTextAlignment" Value="Start"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="´FontSize" Value="Large"/>
+
+        </Style>
+
+        <Style x:Key="Campos_Cadastrados" TargetType="Entry">
+
+            <Setter Property="TextColor" Value="Black"/>
+            <Setter Property="ClearButtonVisibility" Value="WhileEditing"/>
+            <Setter Property="Keyboard" Value="Text"/>
+            <Setter Property="HorizontalTextAlignment" Value="Start"/>
+            <Setter Property="PlaceholderColor" Value="Gray"/>
+
+        </Style>
+
+        <Style x:Key="Botoes_Cadastrados" TargetType="Button">
+
+            <Setter Property="BackgroundColor" Value="#0018a8"/>
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Margin" Value="0, 20, 0, 0"/>
+
+        </Style>
+
+    </Application.Resources>
+    
+</Application>
